@@ -1,21 +1,22 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-
-class Tenant
-{
+class Tenant{
 protected:
     string tName, dateEntry;
-    int tidNo;
+    int tidNo,roomType;
+    double bill;
 public:
     Tenant();
     //void roomType();
     void settenantName();
     void settenantIDno();
     void setdateofEntry();
+    void setRoomtype();
     void viewtenantDetails();
+    void readPayment(int &rent);
 };
-Tenant::Tenant()
-{
+
+Tenant::Tenant(){
 cout<<"---TAKING TENANT DETAILS---\n";
 cout<<"Enter your name: \n";
 cin>>tName;
@@ -24,23 +25,24 @@ cin>>tidNo;
 cout<< tName << " enter you date of entry(today's date):  \n";
 cin>>dateEntry;
 }
-void Tenant::settenantName()
-{
+
+void Tenant::settenantName(){
 cout<<"Enter your name: \n";
 cin>>tName;
 }
-void Tenant::settenantIDno()
-{
+
+void Tenant::settenantIDno(){
 cout<<"Enter your identification number: \n";
 cin>>tidNo;
 }
-void Tenant::setdateofEntry()
-{
+
+void Tenant::setdateofEntry(){
 cout<< tName << " enter you date of entry(today's date):  \n";
 cin>>dateEntry;
 }
-void Tenant::viewtenantDetails()
-{
+
+
+void Tenant::viewtenantDetails() {
 cout<<"These are the details that you have input: \n";
 cout<< tName << " is you name \n";
 cout<< tName << " you date of entry is " << dateEntry << endl;
@@ -57,22 +59,11 @@ setRoomtype();
 cout<<"Your Details have been updated\n";
 }
 else
-{
-    cout<<"PROCEED TO ROOM SELECTION:\n ";
-}
-}
 
-class Rent
-{
-protected:
-    int roomType;
-    double bill;
-public:
-    void setRoomtype();
-    void readPayment(int &rent);
-};
-void Rent::setRoomtype()
-{
+cout<<"PROCEED TO ROOM SELECTION:\n ";
+
+}
+void Tenant::setRoomtype(){
 cout<< tName << " choose any room type from the list below: \n";
 cout<<"1. Single shared \n";
 cout<<"2. Doubly shared \n";
@@ -81,8 +72,8 @@ cout<<"REMEBER ROOM PRICE IS SET AT 20000 KSH FOR ALL THE ROOMS ABOVE!!! \n";
 cout<<"PROCEED TO PAYMENT\n";
 cin>>roomType;
 }
-void Rent::readPayment(int &rent)
-{
+
+void Tenant::readPayment(int &rent){
 bill=rent;
 int choice;
 double amount;
@@ -94,67 +85,61 @@ cout<<"2. Doubly shared \n";
 cout<<"3. Quadruply shared \n";
 cout<<"4. Exit \n";
 cin>>choice;
-switch(choice)
-{
+
+switch(choice){
+
 case 1:
    rent=20000;
    cout << "Your rent for this room is 20000. Please proceed with the payment.\n";
-   cout<< "Enter amount payable: /n";
-   cin>> amount;
-   if (amount!=rent)
-   {
-    cout<<"Not fully paid. Please pay in full: \n";
-   }
-   else
-   {
-    cout<< tName << " your rent is paid. Thank you \n";
-    break;
-   }
-case 2:
-   rent=10000;
-   cout << "Your rent for this room is 10000(Since you live with a room-mate). Please proceed with the payment.\n";
+
+   do{
    cout<< "Enter amount payable: \n";
    cin>> amount;
-   if (amount!=rent)
-   {
+   if (amount!=rent){
     cout<<"Not fully paid. Please pay in full: \n";
    }
-   else
-   {
-    cout<< tName << " your rent is paid. Thank you \n";
+   }while(amount!=rent);
+    cout<<"Rent paid Thanks.\n";
     break;
+case 2:
+   rent=10000;
+   cout << "Your rent for this room is 10000(Since you live with a roommate). Please proceed with the payment.\n";
+  do{
+   cout<< "Enter amount payable: \n";
+   cin>> amount;
+   if (amount!=rent){
+    cout<<"Not fully paid. Please pay in full: \n";
    }
+   }while(amount!=rent);
+   cout<<"Rent paid Thanks.\n";
+   break;
 case 3:
    rent=5000;
    cout << "Your rent for this room is 4000(since you live with 3 room mates). Please proceed with the payment.\n";
+   do{
    cout<< "Enter amount payable: \n";
    cin>> amount;
-   if(amount!=rent)
-   {
+   if (amount!=rent){
     cout<<"Not fully paid. Please pay in full: \n";
    }
-   else
-   {
-    cout<< tName << " your rent is paid. Thank you \n";
-    break;
-   }
+   }while(amount!=rent);
+   cout<<"Rent paid Thanks.\n";
+   break;
+
 default:
     cout<<"Invalid choice.\n";
     return;
-}
+
+
+
+
 }
 
-class Landlord : public Caretaker
-{
-private:
-    string flatName;
-public:
-    void receivePayment()
-};
-void Landlord::receivePayment()
-{
-    
+
+
+
 }
+
 int main()
 {
 int rent=0;
@@ -166,5 +151,4 @@ t.setRoomtype();
 t.readPayment(rent);
 return 0;
 }
-
 
