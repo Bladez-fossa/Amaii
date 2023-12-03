@@ -7,7 +7,7 @@ protected:
     double bill;
 public:
     Tenant();
-    //void roomType();
+    virtual void roommType(){};
     void settenantName();
     void settenantIDno();
     void setdateofEntry();
