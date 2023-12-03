@@ -1,0 +1,50 @@
+class CareTaker : public Tenant {
+protected:
+    string buildingName;
+
+public:
+        string CaretakerName;
+    void receivePayment() {
+        double amountPaid;
+        cout << "Amount paid by " << tName << ": ";
+        cin >> amountPaid;
+    }
+    string setName() { 
+        cout << "Enter caretaker name: ";
+        cin >> CaretakerName;
+        
+    }
+    
+    string setBuildingName() {
+        cout << "Enter building name: ";
+        cin >> buildingName; 
+       }
+       void roomType() {
+        int singleShared, doubleShared, quadrupleShared;
+            cout << "Enter number of single share rooms: ";
+            cin>>singleShared;
+            cout << "Enter number of double share rooms: ";
+            cin>>doubleShared;
+            cout << "Enter number of quadruple share rooms: ";
+            cin>>quadrupleShared;
+            cout<< " Number of single share rooms is: "<<singleShared;
+            cout<<" Number of double share rooms is: "<<doubleShared;
+            cout<<"Number of quadruple share rooms is: "<<quadrupleShared;
+       }
+};
+
+int main()
+{
+    CareTaker caretaker1;
+    caretaker1.receivePayment();
+    caretaker1.setName();
+    caretaker1.setBuildingName();
+    caretaker1.roomType();
+int rent=0;
+Tenant t;
+t.settenantName();
+t.settenantIDno();
+t.viewtenantDetails();
+t.setRoomtype();
+return 0;
+}
